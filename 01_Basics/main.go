@@ -1,17 +1,31 @@
 package main
 
+import (
+	"log"
+	"ronishg27/basics/database"
+	"ronishg27/basics/handler"
+	"ronishg27/basics/models"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 
-	// day_01.HelloWorld()
-	// day_01.PrintTypes()
-	// day_02.CheckDataTypes()
-	// day_02.CheckConstants()
+	database.Init()
+	err := database.DB.AutoMigrate(&models.User{})
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	g := gin.Default()
 
-	// day_03.CheckConditional()
-	// day_03.CheckLoops()
-	// day_03.CheckFunctions()
+	// setup routes
+	g.POST("/user", handler.CreateUserHandler)
 
-	// day_04.CheckArray()
-	// day_04.CheckSlice()
+	err = g.Run(":8080")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
 }

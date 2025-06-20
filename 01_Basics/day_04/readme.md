@@ -52,3 +52,32 @@ copySlice := slc
 copySlice := make([]int, len(slc))
 copy(copySlice, slc)
 ```
+
+## Map
+
+- Collection of key-value pairs.
+- Map are passed by value.
+
+```go
+person := map[key_type]value_type{
+	key1: value1,
+	key2: value2,
+}
+
+```
+
+### Accessing Map elements
+
+```go
+fmt.Println(person["name"])
+```
+
+### Merging two maps
+
+- two maps can be merged using `copy()` function
+
+```go
+mergedMap := make(map[string]any)
+maps.Copy(mergedMap, map1)
+maps.Copy(mergedMap, map2)
+```
